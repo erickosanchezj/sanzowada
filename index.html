@@ -4733,7 +4733,6 @@
             // Populate the main grid with all colors
             colorsData.forEach(color => {
                 const swatch = document.createElement('div');
-                // CHANGE: Use responsive height. Shorter on mobile, taller on desktop.
                 swatch.className = 'main-palette-swatch h-36 sm:h-48';
                 swatch.style.backgroundColor = color.hex;
                 swatch.title = color.name;
@@ -4744,15 +4743,16 @@
                 // Create and append info elements
                 const indexEl = document.createElement('span');
                 indexEl.className = 'swatch-info top-0 left-0';
-                // Display the index and the number of combinations
                 indexEl.textContent = `${color.index} (${color.combinations.length})`;
                 
                 const hexEl = document.createElement('span');
-                hexEl.className = 'swatch-info bottom-0 left-0 font-mono';
+                // CHANGE: Added w-1/2 to limit width
+                hexEl.className = 'swatch-info bottom-0 left-0 font-mono w-1/2';
                 hexEl.textContent = color.hex;
 
                 const nameEl = document.createElement('span');
-                nameEl.className = 'swatch-info bottom-0 right-0 text-right';
+                // CHANGE: Added w-1/2 to limit width and 'truncate' for ellipsis on long names
+                nameEl.className = 'swatch-info bottom-0 right-0 text-right w-1/2 truncate';
                 nameEl.textContent = color.name;
 
                 swatch.appendChild(indexEl);
