@@ -63,7 +63,7 @@
         <main class="p-4 sm:p-6 lg:p-8">
             <div class="max-w-7xl mx-auto">
                 <header class="text-center mb-12">
-                     <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-2 text-stroke">A Dictionary of Color Combinations</h1>
+                     <h1 class="text-2xl sm:text-4xl lg:text-5xl font-bold mb-2 text-stroke">A Dictionary of Color Combinations</h1>
                      <p class="text-lg text-stroke">Based on the work of Sanzo Wada</p>
                 </header>
 
@@ -95,7 +95,7 @@
 
                 <!-- Color Combinations -->
                 <div id="combinations-section" class="mb-12">
-                    <h3 id="palettes-heading" class="text-2xl font-semibold text-gray-800 mb-6">Palettes Featuring This Color</h3>
+                    <h3 id="palettes-heading" class="text-xl lg:text-2xl font-semibold text-gray-800 mb-6">Palettes Featuring This Color</h3>
                     <div id="combinations-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         <!-- Combination palettes will be inserted here -->
                     </div>
@@ -104,7 +104,7 @@
 
                 <!-- All Colors Grid -->
                 <div class="border-t pt-10">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Complete Color Index</h3>
+                    <h3 class="text-xl lg:text-2xl font-semibold text-gray-800 mb-6">Complete Color Index</h3>
                     <div id="colors-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-0">
                         <!-- Color swatches will be inserted here -->
                     </div>
@@ -112,6 +112,14 @@
             </div>
         </main>
     </div>
+
+    <button id="to-top-button" 
+            class="hidden fixed bottom-5 right-5 z-20 bg-gray-800/70 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center backdrop-filter backdrop-blur-sm transition-opacity duration-300 hover:bg-gray-900"
+            title="Go to top">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+        </svg>
+    </button>
 
     <script>
         const originalJsonData = {
@@ -4702,6 +4710,22 @@
             }
         }
 
+        const toTopButton = document.getElementById('to-top-button');
+
+        // Show the button when the user scrolls down
+        window.onscroll = function() {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                toTopButton.classList.remove('hidden');
+            } else {
+                toTopButton.classList.add('hidden');
+            }
+        };
+
+        // Scroll to the top when the button is clicked
+        toTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
         /**
          * Initializes the application.
          */
@@ -4709,7 +4733,8 @@
             // Populate the main grid with all colors
             colorsData.forEach(color => {
                 const swatch = document.createElement('div');
-                swatch.className = 'main-palette-swatch h-48'; // Taller swatch
+                // CHANGE: Use responsive height. Shorter on mobile, taller on desktop.
+                swatch.className = 'main-palette-swatch h-36 sm:h-48';
                 swatch.style.backgroundColor = color.hex;
                 swatch.title = color.name;
                 
