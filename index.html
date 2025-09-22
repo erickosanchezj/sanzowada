@@ -337,8 +337,8 @@
                 hexEl.textContent = color.hex;
 
                 const nameEl = document.createElement('span');
-                // CHANGE: Added w-1/2 to limit width and 'truncate' for ellipsis on long names
-                nameEl.className = 'swatch-info bottom-0 left-0 text-right w-1/2';
+                // Align the palette name along the bottom-left while keeping the text right-aligned
+                nameEl.className = 'swatch-info bottom-0 left-0 text-right';
                 nameEl.textContent = color.name;
 
                 swatch.appendChild(indexEl);
