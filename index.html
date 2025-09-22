@@ -244,7 +244,7 @@
                     const paletteSwatches = document.createElement('div');
                     // --- CHANGE IS HERE ---
                     // Updated grid for square swatches
-                    paletteSwatches.className = 'p-3 grid grid-cols-2 gap-2';
+                    paletteSwatches.className = 'p-2 sm:p-3 grid grid-cols-2 sm:grid-cols-3 gap-1 sm:gap-2';
                     
                     const paletteFragment = document.createDocumentFragment();
 
@@ -261,11 +261,11 @@
 
                         // Create and append info elements for HEX and Name
                         const hexEl = document.createElement('span');
-                        hexEl.className = 'absolute top-2 left-2 text-xs font-mono opacity-80';
+                        hexEl.className = 'absolute top-1 sm:top-2 left-1 sm:left-2 text-xs font-mono opacity-80';
                         hexEl.textContent = comboColor.hex;
 
                         const nameEl = document.createElement('span');
-                        nameEl.className = 'absolute bottom-2 right-2 text-xs text-right opacity-80 truncate';
+                        nameEl.className = 'absolute bottom-1 sm:bottom-2 right-1 sm:right-2 text-xs text-right opacity-80 truncate max-w-[80%]';
                         nameEl.textContent = comboColor.name;
                         
                         swatch.appendChild(hexEl);
